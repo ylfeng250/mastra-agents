@@ -3,6 +3,12 @@ import { createToolCallAccuracyScorerCode } from '@mastra/evals/scorers/prebuilt
 import { createCompletenessScorer } from '@mastra/evals/scorers/prebuilt';
 import { getAssistantMessageFromRunOutput, getUserMessageFromRunInput } from '@mastra/evals/scorers/utils';
 import { createScorer } from '@mastra/core/evals';
+import { createOpenAI } from '@ai-sdk/openai';
+
+const qianfanModel = createOpenAI({
+  apiKey: process.env.QIANFAN_API_KEY,
+  baseURL: 'https://qianfan.baidubce.com/v2/coding',
+}).chat('deepseek-v3.2');
 
 export const toolCallAppropriatenessScorer = createToolCallAccuracyScorerCode({
   expectedTool: 'weatherTool',
@@ -18,7 +24,7 @@ export const translationScorer = createScorer({
   description: 'Checks that non-English location names are translated and used correctly',
   type: 'agent',
   judge: {
-    model: 'openai/gpt-5-mini',
+    model: qianfanModel,
     instructions:
       'You are an expert evaluator of translation quality for geographic locations. ' +
       'Determine whether the user text mentions a non-English location and whether the assistant correctly uses an English translation of that location. ' +

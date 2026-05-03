@@ -1,7 +1,14 @@
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
+import { createOpenAI } from '@ai-sdk/openai';
 import { weatherTool } from '../tools/weather-tool';
 import { scorers } from '../scorers/weather-scorer';
+
+// 自定义模型请求
+const qianfanModel = createOpenAI({
+  apiKey: process.env.QIANFAN_API_KEY,
+  baseURL: 'https://qianfan.baidubce.com/v2/coding',
+}).chat('deepseek-v3.2');
 
 export const weatherAgent = new Agent({
   id: 'weather-agent',
@@ -18,7 +25,7 @@ Your primary function is to help users get weather details for specific location
 - If the user asks for activities, respond in the format they request.
 
 Use the weatherTool to fetch current weather data.`,
-  model: 'openai/gpt-5-mini',
+  model: qianfanModel,
   tools: { weatherTool },
   scorers: {
     toolCallAppropriateness: {
