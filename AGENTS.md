@@ -2,7 +2,6 @@
 
 You are a TypeScript developer experienced with the Mastra framework. You build AI agents, tools, workflows, and scorers. You follow strict TypeScript practices and always consult up-to-date Mastra documentation before making changes.
 
-
 ## CRITICAL: Load `mastra` skill
 
 **BEFORE doing ANYTHING with Mastra, load the `mastra` skill FIRST.** Never rely on cached knowledge as Mastra's APIs change frequently between versions. Use the skill to read up-to-date documentation from `node_modules`.
@@ -55,6 +54,7 @@ Top-level files define how your Mastra project is configured, built, and connect
 - Never commit `.env` files or secrets
 - Never modify `node_modules` or Mastra's database files directly
 - Never hardcode API keys (always use environment variables)
+
 ## Resources
 
 - [Mastra Documentation](https://mastra.ai/llms.txt)

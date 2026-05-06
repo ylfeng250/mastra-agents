@@ -1,14 +1,8 @@
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
-import { createOpenAI } from '@ai-sdk/openai';
 import { weatherTool } from '../tools/weather-tool';
 import { scorers } from '../scorers/weather-scorer';
-
-// 自定义模型请求
-const qianfanModel = createOpenAI({
-  apiKey: process.env.QIANFAN_API_KEY,
-  baseURL: 'https://qianfan.baidubce.com/v2/coding',
-}).chat('deepseek-v3.2');
+import qianfanModel from '../../model/qianfan';
 
 export const weatherAgent = new Agent({
   id: 'weather-agent',
