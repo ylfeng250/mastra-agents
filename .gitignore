@@ -8,3 +8,5 @@ dist
 *.db-*
 .netlify
 .vercel
+*.duckdb
+*.duckdb.wal
